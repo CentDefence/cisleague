@@ -5,12 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CIA League</title>
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* BASE */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -19,16 +16,16 @@ body {
     overflow-x: hidden;
 }
 
-/* SOFT BACKGROUND */
+/* BACKGROUND */
 body::before {
     content: "";
     position: fixed;
     width: 150%;
     height: 150%;
     background:
-        radial-gradient(circle at 20% 30%, rgba(120,0,255,0.25), transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255,0,80,0.25), transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(0,100,255,0.25), transparent 40%);
+        radial-gradient(circle at 20% 30%, rgba(120,0,255,0.2), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,0,80,0.2), transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(0,100,255,0.2), transparent 40%);
     filter: blur(120px);
     z-index: -1;
 }
@@ -37,77 +34,122 @@ body::before {
 header {
     display: flex;
     justify-content: space-between;
-    padding: 15px 40px;
+    padding: 15px 30px;
     background: rgba(15,15,25,0.7);
     backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeSlide 1s forwards;
 }
 
-.logo {
-    font-weight: 800;
-    font-size: 22px;
-    background: linear-gradient(90deg,#8a2eff,#ff2a6d,#2a7bff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* TOP INFO TAGS */
+.top-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-nav a {
-    margin: 0 12px;
-    cursor: pointer;
-    color: #aaa;
+.tag {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
     transition: 0.3s;
 }
 
+.tag:hover {
+    transform: scale(1.05);
+    border-color: #8a2eff;
+}
+
+/* LOGO */
+.logo {
+    font-weight: 800;
+    font-size: 20px;
+    background: linear-gradient(90deg,#8a2eff,#ff2a6d,#2a7bff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeSlide 1s forwards 0.3s;
+}
+
+/* NAV */
+nav a {
+    margin: 0 10px;
+    cursor: pointer;
+    color: #aaa;
+    transition: 0.3s;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeSlide 1s forwards 0.5s;
+}
+
 nav a:hover {
-    color: white;
+    color: #00aaff;
 }
 
 /* HERO */
 .hero {
     text-align: center;
-    padding: 100px 20px 60px;
+    padding: 80px 20px 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlide 1s forwards 0.7s;
 }
 
 .hero h1 {
-    font-size: 52px;
-    margin-bottom: 10px;
+    font-size: 50px;
     background: linear-gradient(90deg,#8a2eff,#ff2a6d,#2a7bff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
 }
 
 .hero p {
     color: #aaa;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
+/* JOIN BUTTON */
 .join-btn {
-    padding: 14px 35px;
-    border-radius: 10px;
+    margin-top: 20px;
+    padding: 12px 40px;
+    border-radius: 12px;
     border: none;
-    font-size: 16px;
-    cursor: pointer;
     background: linear-gradient(90deg,#8a2eff,#2a7bff);
     color: white;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     transition: 0.3s;
+    box-shadow: 0 0 15px rgba(138,46,255,0.5);
 }
 
 .join-btn:hover {
     transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(138,46,255,0.8);
 }
 
-/* TEXT BLOCK */
+/* INFO TEXT */
 .info {
     text-align: center;
-    max-width: 700px;
+    max-width: 650px;
     margin: auto;
-    padding: 40px 20px;
+    padding: 30px 20px;
     color: #bbb;
-    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlide 1s forwards 1s;
 }
 
 .date {
-    margin-top: 15px;
-    font-size: 18px;
+    margin-top: 10px;
+    font-size: 17px;
     color: white;
 }
 
@@ -116,15 +158,22 @@ nav a:hover {
     position: fixed;
     top: 20px;
     right: -200px;
-    padding: 12px 25px;
+    padding: 10px 20px;
     border-radius: 10px;
     background: linear-gradient(90deg,#8a2eff,#ff2a6d);
     transition: 0.5s;
-    font-weight: 600;
 }
 
 .soon.show {
     right: 20px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 </style>
@@ -133,24 +182,33 @@ nav a:hover {
 <body>
 
 <header>
-    <div class="logo">CIA LEAGUE</div>
-    <nav>
-        <a onclick="showSoon()">Home</a>
-        <a onclick="showSoon()">League</a>
-        <a onclick="showSoon()">Teams</a>
-    </nav>
+<div class="top-info">
+    <div class="tag">👑 Owner: Polcovodec</div>
+    <div class="tag">📖 President: Sqvnix</div>
+    <div class="tag">👤 Members: 57</div>
+</div>
+
+<div class="logo">CIA LEAGUE</div>
+
+<nav>
+    <a onclick="showSoon()">Home</a>
+    <a onclick="showSoon()">League</a>
+    <a onclick="showSoon()">Teams</a>
+</nav>
 </header>
 
 <div class="hero">
     <h1>CIA LEAGUE</h1>
     <p>Join the new era</p>
-    <button class="join-btn" onclick="join()">Join Now !</button>
+    <button class="join-btn" onclick="join()">
+        <svg height="20" width="20" viewBox="0 0 245 240" fill="white"><path d="M104.4 0C46.7 0 0 46.7 0 104.4S46.7 208.8 104.4 208.8c57.7 0 104.4-46.7 104.4-104.4S162.1 0 104.4 0zm49.7 162s-4.7-5.4-8.5-10c17-5.6 23.4-17 23.4-17-5.3 3.5-10.3 6.1-14.8 7.9-6.5 3.1-12.8 5.3-18.7 6.6-12.3 2.8-23.5 1.9-33.9-.1-7-1.3-13-3-18.7-5-0.8-0.3-1.6-0.6-2.3-0.9-0.5-0.2-1-0.3-1.4-0.5-0.4-0.1-0.6-0.2-0.6-0.2s6.2 11.3 22.5 16.5c-3.8 4.7-8.6 10.3-8.6 10.3-28.4-9-39.1-27.8-39.1-27.8 0-59.2 26.4-107.1 26.4-107.1 26.4-19.7 51.3-19.1 51.3-19.1l1.9 2.2c-33 9.4-48.1 23.7-48.1 23.7s4 2.1 10.7 5.1c19.5 8.2 35 10.3 41.4 10.8 1 0.2 2 0.2 2 0.2s13.2-9.6 45-23.6l2.3-0.8s24.6-1.7 51.3 19.1c0 0 26.4 47.9 26.4 107.1 0 0-10.8 18.8-39.2 27.8z"/></svg>
+        Join Now !
+    </button>
 </div>
 
 <div class="info">
-    Это будет лучшая лига, где определится кто сильнейший в СНГ.  
-    Sqvnix и Polcovodec возвращают легенду — CIA.
-    
+    This will be the best league where the strongest player in the CIS will be determined.<br>
+    Sqvnix and Polcovodec are bringing back the legend — CIA.
     <div class="date">14.01.26</div>
 </div>
 
@@ -164,7 +222,7 @@ function showSoon() {
 }
 
 function join() {
-    window.location.href = "https://discord.gg/WXKUCSwv";
+    window.open("https://discord.gg/WXKUCSwv","_blank");
 }
 </script>
 
