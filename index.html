@@ -81,7 +81,6 @@ nav a:hover {
     animation: flicker 1.2s infinite alternate;
 }
 
-/* Flicker effect for SOON */
 @keyframes flicker {
     0% { opacity: 0.85; }
     50% { opacity: 1; }
@@ -159,28 +158,46 @@ nav a:hover {
     line-height: 1.6;
 }
 
-/* COUNTDOWN BELOW INFO WITH PULSE */
+/* COUNTDOWN BELOW INFO WITH EFFECTS */
 .countdown-container {
     text-align: center;
     margin: 20px 0 50px;
+    position: relative;
 }
 
 .countdown-box {
     display: inline-block;
-    background: black;
+    background: linear-gradient(135deg, #8a2eff, #ff2a6d, #2a7bff);
     padding: 25px 50px;
     border-radius: 14px;
     font-size: 40px;
     font-weight: 700;
     color: white;
-    border: 4px solid #ff2a6d;
+    border: 4px solid rgba(255,255,255,0.2);
     animation: pulse 1.5s infinite alternate;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Pulse animation for timer */
+.countdown-box::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotateBg 6s linear infinite;
+}
+
+@keyframes rotateBg {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 @keyframes pulse {
     0% { transform: scale(1); box-shadow: 0 0 15px rgba(255,42,109,0.5); }
-    50% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255,42,109,0.8); }
+    50% { transform: scale(1.04); box-shadow: 0 0 30px rgba(255,42,109,0.9); }
     100% { transform: scale(1); box-shadow: 0 0 15px rgba(255,42,109,0.5); }
 }
 
@@ -189,6 +206,8 @@ nav a:hover {
     font-size: 26px;
     font-weight: 700;
     color: white;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255,42,109,0.7);
 }
 
 /* FOOTER */
