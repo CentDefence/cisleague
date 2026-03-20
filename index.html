@@ -16,7 +16,6 @@ body {
     overflow-x: hidden;
 }
 
-/* BACKGROUND DETAIL */
 body::before {
     content: "";
     position: fixed;
@@ -61,8 +60,8 @@ nav a:hover {
     transform: scale(1.05);
 }
 
-/* FULL SCREEN SOON */
-.full-soon {
+/* SOON OPEN POPUP */
+.soon {
     position: fixed;
     top:0;
     left:0;
@@ -70,48 +69,38 @@ nav a:hover {
     height:100%;
     background: rgba(0,0,0,0.9);
     display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
+    justify-content:center;
+    align-items:center;
+    font-size:80px;
+    font-weight:800;
+    text-align:center;
+    background: rgba(0,0,0,0.9);
+    color:white;
+    z-index:10;
+    display:none;
 }
 
-.full-soon h1 {
-    font-size: 80px;
-    font-weight: 800;
+/* COUNTDOWN */
+.countdown-container {
     text-align: center;
-    background: linear-gradient(90deg,#8a2eff,#ff2a6d,#2a7bff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 20px;
+    margin: 50px 0 20px;
 }
 
-/* BIG TIMER */
-.big-timer {
+.countdown-box {
     display: inline-block;
     background: black;
     padding: 20px 40px;
     border-radius: 12px;
     font-size: 36px;
     font-weight: 700;
-    letter-spacing: 1px;
     color: white;
     border: 3px solid #ff2a6d;
-    text-align: center;
-}
-
-.big-timer-date {
-    margin-top: 10px;
-    font-size: 18px;
-    color: white;
-    text-align: center;
 }
 
 /* HERO & TAGS */
 .hero {
     text-align: center;
     padding: 40px 20px 30px;
-    margin-top: 50px;
 }
 
 .hero h1 {
@@ -199,10 +188,12 @@ nav a:hover {
     </nav>
 </header>
 
-<!-- FULL SCREEN SOON OPEN -->
-<div class="full-soon" id="soonScreen">
-    <h1>SOON OPEN</h1>
-    <div class="big-timer" id="countdown">Loading...</div>
+<!-- SOON OPEN -->
+<div class="soon" id="soonScreen">SOON OPEN</div>
+
+<!-- COUNTDOWN -->
+<div class="countdown-container">
+    <div class="countdown-box" id="countdown">Loading...</div>
     <div class="big-timer-date">1.04.26</div>
 </div>
 
@@ -230,19 +221,18 @@ nav a:hover {
 <div class="footer">@CIALEAGUE2026</div>
 
 <script>
-// Discord button
 function join() {
     window.open("https://discord.gg/WXKUCSwv","_blank");
 }
 
-// SHOW SOON SCREEN ON NAV CLICK
+// SHOW SOON OPEN ON NAV CLICK
 function showSoon() {
     const el = document.getElementById("soonScreen");
     el.style.display = "flex";
-    setTimeout(() => el.style.display = "none", 4000);
+    setTimeout(() => el.style.display = "none", 2000);
 }
 
-// COUNTDOWN
+// COUNTDOWN TO 1.04.26
 const targetDate = new Date("2026-04-01T00:00:00").getTime();
 const countdown = document.getElementById("countdown");
 
