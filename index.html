@@ -33,10 +33,41 @@ body::before {
 /* HEADER */
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 15px 30px;
     background: rgba(15,15,25,0.7);
     backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeSlide 1s forwards;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 20px;
+    background: linear-gradient(90deg,#8a2eff,#ff2a6d,#2a7bff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeSlide 1s forwards 0.3s;
+}
+
+nav a {
+    margin: 0 12px;
+    cursor: pointer;
+    color: #aaa;
+    font-weight: 600;
+    transition: 0.3s;
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeSlide 1s forwards 0.5s;
+}
+
+nav a:hover {
+    color: #ff2a6d;
+    transform: scale(1.05);
 }
 
 /* HERO */
@@ -45,7 +76,7 @@ header {
     padding: 60px 20px 30px;
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeSlide 1s forwards 0.3s;
+    animation: fadeSlide 1s forwards 0.7s;
 }
 
 .hero h1 {
@@ -113,6 +144,9 @@ header {
     margin: 30px auto;
     color: #bbb;
     line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlide 1s forwards 1s;
 }
 
 .date {
@@ -121,12 +155,29 @@ header {
     color: white;
 }
 
-/* MAP */
-#map {
-    width: 100%;
-    height: 250px;
-    border-radius: 15px;
-    margin-top: 30px;
+.footer {
+    text-align: center;
+    margin: 40px 0 20px;
+    font-size: 14px;
+    color: #888;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlide 1s forwards 1.2s;
+}
+
+/* SOON POPUP */
+.soon {
+    position: fixed;
+    top: 20px;
+    right: -200px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: linear-gradient(90deg,#8a2eff,#ff2a6d);
+    transition: 0.5s;
+}
+
+.soon.show {
+    right: 20px;
 }
 
 /* ANIMATION */
@@ -141,6 +192,15 @@ header {
 </head>
 
 <body>
+
+<header>
+    <div class="logo">CIA LEAGUE</div>
+    <nav>
+        <a onclick="showSoon()">Home</a>
+        <a onclick="showSoon()">League</a>
+        <a onclick="showSoon()">Teams</a>
+    </nav>
+</header>
 
 <div class="hero">
     <h1>CIA LEAGUE</h1>
@@ -163,26 +223,21 @@ header {
     <div class="date">14.01.26</div>
 </div>
 
-<div id="map"></div>
+<div class="footer">@CIALEAGUE2026</div>
+
+<div class="soon" id="soon">SOON</div>
 
 <script>
+function showSoon() {
+    const el = document.getElementById("soon");
+    el.classList.add("show");
+    setTimeout(() => el.classList.remove("show"), 2000);
+}
+
 function join() {
     window.open("https://discord.gg/WXKUCSwv","_blank");
 }
-
-// Google Maps init
-function initMap() {
-    const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 50.4501, lng: 30.5234 },
-        zoom: 4,
-        styles: [
-            { "featureType": "all","elementType": "all","stylers":[{"saturation":60},{"lightness":0}] }
-        ]
-    });
-}
 </script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 
 </body>
 </html>
